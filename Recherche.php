@@ -1,16 +1,16 @@
 <?php session_start() ?>
 <!DOCTYPE html>
  <html>
-	<?php include ("./includes/Head.php"); ?> 
+	<?php include ("includes/head.php"); ?> 
 	<body>
 
-		<?php include ("./includes/Header.php"); ?>
+		<?php include ("includes/header.php"); ?>
 
 
 
 		<div id ="colonneP">
 
-		<? if (empty($_SESSION['Recherche'])){
+		<?php if (empty($_SESSION['Recherche'])){
 			echo '<h2> Veuillez entrer des mot-clés pour la recherche ! </h2>';
 		}
 
@@ -27,7 +27,7 @@
 		<?php 
 			
 			$request = $_SESSION['Recherche'];
-			include("./includes/Connexion.php");
+			include("includes/connexion.php");
 			$bdd=connect();
 			$query=$bdd->prepare('SELECT *, DATE_FORMAT(Date_Ajout,\'%d/%m/%Y\') AS Date FROM article WHERE Titre LIKE "%'.$request.'%" ');
 			$query->execute();
@@ -60,8 +60,8 @@
 		</div>
 			
 		<?php 
-		include("./includes/Menu.php"); 	//inclusion du menu latéral 
-		include("./includes/Footer.php");	//inclusion du footer 
+		include("includes/menu.php"); 	//inclusion du menu latéral 
+		include("includes/footer.php");	//inclusion du footer 
 		?>
 
 		</body>
