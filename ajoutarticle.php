@@ -75,7 +75,7 @@
 															$numNouvelArticle=$maxNumArticle+1;
 													
 															//on place l'images dans le dossier "images" du serveur
-															$nom_fichier = 'imageArticle'.$numNouvelArticle;
+															$nom_fichier = 'imageArticle'.$numNouvelArticle.'.'.$type_fichier;
 															$content_dir = 'imagesArticles/';
 															move_uploaded_file($emplacementTemporaire, $content_dir . basename($nom_fichier));
 																		
