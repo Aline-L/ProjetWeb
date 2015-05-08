@@ -122,6 +122,10 @@ aside input{
 	width: 100px;
 }
 
+input[name="Deconnexion"]{
+	width: 110px;
+}
+
 h2 {
 	text-align: left;
 }
