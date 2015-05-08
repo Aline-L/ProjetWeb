@@ -1,10 +1,10 @@
 <?php session_start() ?>
 <!DOCTYPE html>
  <html>
- 	<?php include ("includes/Head.php"); ?> 
+ 	<?php include ("includes/head.php"); ?> 
 	<body>
 
-		<?php include ("includes/Header.php"); ?>
+		<?php include ("includes/header.php"); ?>
 
 			<div id ="colonneP">
 				<h1> Page introuvable! :)</h1>
@@ -12,8 +12,8 @@
 			</div>
 			
 		<?php 
-		include("includes/Menu.php"); 	//inclusion du menu latéral 
-		include("includes/Footer.php");	//inclusion du footer 
+		include("includes/menu.php"); 	//inclusion du menu latéral 
+		include("includes/footer.php");	//inclusion du footer 
 		?>		
 
 		</body>

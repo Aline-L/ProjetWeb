@@ -2,7 +2,7 @@
 	<p>Designed by Aline Legros | Cyril Weller</p>	
 
 	<?php
-	include_once("includes/Connexion.php");
+	include_once("includes/connexion.php");
 	$bdd=connect();
 
 	$query = $bdd->prepare('SELECT COUNT(Identifiant) FROM utilisateur');

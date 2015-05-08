@@ -6,17 +6,17 @@
 	}
 ?>
  <html>
-		<?php include ("includes/Head.php"); ?> 
+		<?php include ("includes/head.php"); ?> 
 
  		 <body>
 
- 		 <?php include ("includes/Header.php"); ?>
+ 		 <?php include ("includes/header.php"); ?>
  		<div id="colonneP">
 			
 		<?php
 		
 				if(isset($identifiant)){
-				include_once("includes/Connexion.php");
+				include_once("includes/connexion.php");
 				$bdd=connect();
 				// on récupère le "Type" (user/webmaster) de l'utilisateur
 				$result = $bdd->prepare('SELECT Type AS typeUser FROM utilisateur WHERE Identifiant=:val');
@@ -28,7 +28,7 @@
 				// on teste si l'utilisateur est bien de type "webmaster"
 				if(strcmp($typeUtilisateur,"webmaster")==0){
 					echo('<h1> Formulaire d\'ajout d\'article </h1>
-					<form id="soumissionArticle" action="AjoutArticle.php" method="post" enctype="multipart/form-data">
+					<form id="soumissionArticle" action="ajoutarticle.php" method="post" enctype="multipart/form-data">
 						<input name="Titre" type="text" placeholder="Titre"/>
 						<textarea name="Resume" placeholder="Tapez le résumé de votre article ici" cols="80" rows="10"></textarea>
 						<textarea name="Article" placeholder="Tapez votre article complet ici" cols="80" rows="10"></textarea>
@@ -68,25 +68,26 @@
 													}
 													
 													else{
-															//on place l'images dans le dossier "images" du serveur
-															$nom_fichier = $_FILES['fichier']['name'];
-															$content_dir = './imagesArticles/';
-															move_uploaded_file($emplacementTemporaire, $content_dir . basename($nom_fichier));
-																		
-															//on créér 2 fichiers txt : l'un contenant le résumé, l'autre l'article ;
-															$result = $bdd->query("SELECT MAX(Numero_Article) AS MaxNum FROM article ");
+															//on récupère l'ID du dernier article ajouté et on l'incrémente
+														 	$result = $bdd->query("SELECT MAX(Numero_Article) AS MaxNum FROM article ");
 															$donnee= $result->fetch();
 															$maxNumArticle=$donnee['MaxNum'];
 															$numNouvelArticle=$maxNumArticle+1;
+													
+															//on place l'images dans le dossier "images" du serveur
+															$nom_fichier = 'imageArticle'.$numNouvelArticle.'.'.$type_fichier;
+															$content_dir = 'imagesArticles/';
+															move_uploaded_file($emplacementTemporaire, $content_dir . basename($nom_fichier));
 																		
-															$cheminContenu='./articles/article'.$numNouvelArticle.'.txt';
+															//on créér 2 fichiers txt : l'un contenant le résumé, l'autre l'article ;
+															$cheminContenu='articles/article'.$numNouvelArticle.'.txt';
 															$fichier=fopen($cheminContenu,'w');
 															if($fichier!=null){
 																fputs($fichier,$_POST['Article']);
 																fclose($fichier);
 															}
 																		
-															$cheminResume='./resumes/resume'.$numNouvelArticle.'.txt';
+															$cheminResume='resumes/resume'.$numNouvelArticle.'.txt';
 															$fichier=fopen($cheminResume,'w');
 															if($fichier!=null){
 																fputs($fichier,$_POST['Resume']);
@@ -117,8 +118,8 @@
 		</div>
 
 		<?php 
-		include("includes/Menu.php"); 	//inclusion du menu latéral 
-		include("includes/Footer.php");	//inclusion du footer 
+		include("includes/menu.php"); 	//inclusion du menu latéral 
+		include("includes/footer.php");	//inclusion du footer 
 		?>
 
 		</body>

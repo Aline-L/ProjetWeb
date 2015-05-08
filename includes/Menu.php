@@ -11,7 +11,7 @@
 				<li><input name="Deconnexion" value="Se déconnecter" type="submit"></li>
 		</form>';
 
-	include_once("./includes/Connexion.php");
+	include_once("./includes/connexion.php");
 	$bdd=connect();
 
 	
@@ -32,7 +32,7 @@
 	$query6=$bdd->prepare('SELECT COUNT(Numero_Article) FROM article WHERE Redacteur = ?');
 	$query6->execute(array($_SESSION['Identifiant']));
 	$resultat = $query6->fetch();
-	echo'<li><em>Articles : </em>'.$resultat[0].'</li>';
+	echo'<li><em>Article(s) : </em>'.$resultat[0].'</li>';
 	$query6->closeCursor();
 	}
 
@@ -55,7 +55,7 @@ else{
 
 			</li></form>
 
-		<li><a href="Inscription.php">S\'inscrire</a></li>';
+		<li><a href="inscription.php">S\'inscrire</a></li>';
 	}
 	
 
@@ -64,7 +64,7 @@ else{
 			$pseudo = $_POST['Identifiant'];
 			$password = $_POST['Mot_De_Passe'];
 
-			include_once("./includes/Connexion.php");
+			include_once("./includes/connexion.php");
 			$bdd=connect();
 
 			$query3 = $bdd->prepare('SELECT Identifiant FROM utilisateur WHERE Identifiant = ?');
@@ -98,7 +98,7 @@ else{
 
 	if(isset($_POST['Deconnexion'])){
 		
-		echo '<li> vous êtes à présent déconnecté(e) </li>';
+		echo '<li>Vous êtes à présent déconnecté(e)</li>';
 		session_destroy();
 		header("Refresh: 1");
 
@@ -113,7 +113,7 @@ else{
 	<nav>
 		<ul>
 			<li><a href="index.php">Accueil</a></li>
-			<li><a href="Apropos.php">A propos</a></li>
+			<li><a href="apropos.php">A propos</a></li>
 			<?php
 				if(isset($_SESSION['Identifiant'])){
 					$result = $bdd->prepare('SELECT Type AS typeUser FROM utilisateur WHERE Identifiant=:val');
@@ -122,7 +122,7 @@ else{
 					$typeUtilisateur=strtolower($donnee['typeUser']);
 					$result->closeCursor();
 					if(strcmp($typeUtilisateur,"webmaster")==0){
-					echo('<li><a href="AjoutArticle.php">Ajouter un article</a></li>');
+					echo('<li><a href="ajoutarticle.php">Ajouter un article</a></li>');
 					}
 				}
 			?>
@@ -132,7 +132,7 @@ else{
 				
 <aside>
 	<h3>Recherche</h3>
-	<form method="post" action="Recherche.php">
+	<form method="post" action="recherche.php">
 		<input name="Rechercher" type="text" placeholder="Rechercher">
 		<input name="Send" value="Go !" type="submit">
 	</form>
@@ -141,7 +141,7 @@ else{
 <?php
 if (isset($_POST['Send'])){
 	$_SESSION['Recherche'] = $_POST['Rechercher'];
-	header('Recherche.php');
+	header('recherche.php');
 	header("Refresh: 0");
 }
 
@@ -151,10 +151,10 @@ if (isset($_POST['Send'])){
 	<h3>Liens externes</h3>
 		<nav>
 			<ul>
-				<li><a href="Introuvable.php">Un jour, un poussin</a></li>
-				<li><a href="Introuvable.php">Un jour, un ecureuil</a></li>
-				<li><a href="Introuvable.php">Un jour, un fenouil</a></li>
-				<li><a href="Introuvable.php">Un jour, une loutre</a></li>
+				<li><a href="introuvable.php">Un jour, un poussin</a></li>
+				<li><a href="introuvable.php">Un jour, un ecureuil</a></li>
+				<li><a href="introuvable.php">Un jour, un fenouil</a></li>
+				<li><a href="introuvable.php">Un jour, une loutre</a></li>
 			</ul>
 		</nav>
 </aside>
