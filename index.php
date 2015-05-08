@@ -2,7 +2,7 @@
 	<!DOCTYPE html>
 
  	<html>
-		<?php include ("includes/Head.php");  // on inclue la balise "head"?> 
+		<?php include ("includes/head.php");  // on inclue la balise "head"?> 
 	<body>
 
 		<header>
@@ -18,7 +18,7 @@
 					
 			<?php
 
-				include_once("./includes/Connexion.php"); // on inclus Connexion.php de façon unique
+				include_once("includes/connexion.php"); // on inclus connexion.php de façon unique
 				$bdd=connect();	// on se connecte à la base de données
 
 				$result=$bdd->query('SELECT COUNT(Numero_Article) FROM article');	// requete pour accéder au nombre d'articles
@@ -47,7 +47,7 @@
 							
 							// on affiche l'image de l'article
 							echo('<div class="image_article">'."\n");
-								echo('<img src="'.$donnees['Chemin_Image'].'" alt="chat" width=auto height=200px>'."\n");
+								echo('<img src="'.$donnees['Chemin_Image'].'" alt="chat" width=auto height=300px>'."\n");
 							echo("</div>\n");
 											
 							// on affiche le texte de l'article
@@ -111,8 +111,8 @@
 			</div>
 
 		<?php 
-		include("includes/Menu.php"); 	//inclusion du menu latéral 
-		include("includes/Footer.php");	//inclusion du footer 
+		include("includes/menu.php"); 	//inclusion du menu latéral 
+		include("includes/footer.php");	//inclusion du footer 
 		?>
 
 		</body>
