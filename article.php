@@ -7,11 +7,11 @@
  <!DOCTYPE html>
  <html>
 
- 	<?php include ("includes/Head.php"); ?> 
+ 	<?php include ("includes/head.php"); ?> 
 
 		<body>
 
-			<?php include ("includes/Header.php"); ?>
+			<?php include ("includes/header.php"); ?>
 
 				<div id="colonneP">
 
@@ -19,7 +19,7 @@
 							if(isset($_GET['id']) && (ctype_digit($_GET['id']))){
 								$num_Article=$_GET['id'];
 								
-								include("includes/Connexion.php");
+								include("includes/connexion.php");
 								$bdd=connect();
 																
 								$query1 = $bdd->prepare('SELECT Titre, Chemin_Contenu, Redacteur, DATE_FORMAT(Date_Ajout,\'%d/%m/%Y\') AS Date, Chemin_Image 
@@ -48,7 +48,7 @@
 									echo("</article>");
 								}
 								else{
-									header('Location:index.php');
+									header('Location: index.php');
 								}
 								$query1->closeCursor();
 								
@@ -109,8 +109,8 @@
 		</div>
 			
 		<?php 
-		include("includes/Menu.php"); 	//inclusion du menu latéral 
-		include("includes/Footer.php");	//inclusion du footer 
+		include("includes/menu.php"); 	//inclusion du menu latéral 
+		include("includes/footer.php");	//inclusion du footer 
 		?>
 
 		</body>
